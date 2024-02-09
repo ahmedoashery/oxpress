@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="h-screen flex items-center justify-center overlay">
+  <div class="h-screen flex items-center justify-center overlay shadow-lg">
     <div class="gradient"></div>
     <UButton icon="i-heroicons-home" label="الصفحة الرئيسية" to="/" variant="link" color="primary" class="transition-all duration-500 absolute top-4" />
     <slot></slot>

@@ -1,7 +1,10 @@
 <script setup lang="ts">
 definePageMeta({
   layout: 'auth',
-  auth: false
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/'
+  }
 })
 
 useSeoMeta({

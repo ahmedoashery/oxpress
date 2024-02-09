@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import type { NavItem } from '@nuxt/content/dist/runtime/types'
-
-const navigation = inject<Ref<NavItem[]>>('navigation', ref([]))
 
 const links = [
   { label: 'من نحن', to: '/docs' },
@@ -9,9 +6,9 @@ const links = [
   { label: 'الاخبار', to: '/blog' }
 ]
 
-const { status, data, signOut } = useAuth()
+const { status, data, signOut} = useAuth()
 
-const logout = async () => await signOut({redirect: true})
+const logout = async () => await signOut()
 </script>
 
 <template>
@@ -24,16 +21,14 @@ const logout = async () => await signOut({redirect: true})
     <template #right>
       <UColorModeButton />
       <p v-if="status === 'authenticated'">
-        Logged in as "{{ data?.user?.name }}"
+        مرحباً "{{ data?.user?.name }}"
       </p>
-      <UButton v-if="status !== 'authenticated'" label="دخول" color="primary" to="/login" variant="soft" />
-      <UButton v-else label="خروج" color="red" variant="soft" @click="logout" />
-      <UButton label="انشاء حساب" icon="i-heroicons-arrow-left-20-solid" trailing color="black" to="/signup"
-        variant="link" class="hidden lg:flex" />
+      <UButton v-if="status === 'unauthenticated'" label="دخول" color="primary" to="/login" variant="soft" />
+      <UButton v-else label="خروج" color="red" variant="link" @click="logout" />
     </template>
 
     <template #panel>
-      <UNavigationTree :links="mapContentNavigation(navigation)" default-open />
+      <UNavigationTree :links="links" default-open />
     </template>
   </UHeader>
 </template>

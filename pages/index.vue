@@ -1,11 +1,5 @@
 <script setup lang="ts">
 definePageMeta({ auth: false })
-const { getSession, getCsrfToken, getProviders, data, status, lastRefreshedAt } = useAuth()
-// const providers = await getProviders()
-const token = await getCsrfToken()
-const session = await getSession()
-const headers = useRequestHeaders(['cookie']) as HeadersInit
-// const { data: token } = await useFetch('/api/auth/token', { headers })
 
 </script>
 

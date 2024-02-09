@@ -32,40 +32,56 @@ const validate = (state: any) => {
   return errors
 }
 
-const providers = [{
-  label: 'تسجيل الدخول بـ Github',
-  icon: 'i-simple-icons-github',
-  color: 'white' as const,
-  click: () => {
-    console.log('Redirect to GitHub')
-  }
-}]
+const providers = [
+  {
+    label: 'Google',
+    icon: 'i-simple-icons-google',
+    color: 'white' as const,
+    click: () => {
+      console.log('Redirect to Google')
+    }
+  },
+  {
+    label: 'Facebook',
+    icon: 'i-simple-icons-google',
+    color: 'white' as const,
+    click: () => {
+      console.log('Redirect to Facebook')
+    }
+  },
+  {
+    label: 'Github',
+    icon: 'i-simple-icons-google',
+    color: 'white' as const,
+    click: () => {
+      console.log('Redirect to Github')
+    }
+  },
+]
 
-async function onSubmit(data: { username: string, password: string }) {
-  await signIn('credentials', { username: data.username, password: data.password, redirect: true, callbackUrl: '/', })
+const onSubmit = async (data: { username: string, password: string }) => {
+  await signIn("credentials", { username: data.username, password: data.password })
 }
 </script>
 
 <template>
   <ClientOnly>
-    <UCard class="max-w-sm w-full bg-white/75 dark:bg-white/5 backdrop-blur">
-      <ULandingCard>
-        <UAuthForm divider="أو" :fields="fields" :validate="validate" :providers="providers" title="تسجيل الدخول للحساب"
-          :align="'top'" icon="i-heroicons-lock-closed" :ui="{ base: 'text-center', footer: 'text-center' }"
-          :submit-button="{ trailingIcon: 'i-heroicons-arrow-left-20-solid', label: 'تسجيل الدخول' }" @submit="onSubmit">
-          <template #description>
-            ليس لديك حساب؟ <NuxtLink to="/signup" class="text-primary font-medium">انشاء حساب</NuxtLink>.
-          </template>
+    <UCard class="max-w-sm w-full bg-white/75 dark:bg-white/5 backdrop-blur shadow-lg">
+      <UAuthForm divider="" :fields="fields" :validate="validate" :providers="providers" title="تسجيل الدخول"
+        :align="'top'" icon="i-heroicons-lock-closed" :ui="{ base: 'text-center', footer: 'text-center' }"
+        :submit-button="{ trailingIcon: 'i-heroicons-arrow-left-20-solid', label: 'تسجيل الدخول' }" @submit="onSubmit">
+        <template #description>
+          ليس لديك حساب؟ <NuxtLink to="/signup" class="text-primary font-medium hover:underline">التسجيل</NuxtLink>.
+        </template>
 
-          <template #password-hint>
-            <NuxtLink to="/" class="text-primary font-medium">نسيت كلمة المرور؟</NuxtLink>
-          </template>
+        <template #password-hint>
+          <NuxtLink to="/" class="text-primary font-medium hover:underline">نسيت كلمة المرور؟</NuxtLink>
+        </template>
 
-          <template #footer>
-            بمجرد تسجيل الدخول توافق على <NuxtLink to="/" class="text-primary font-medium">شروط الخدمة</NuxtLink>.
-          </template>
-        </UAuthForm>
-      </ULandingCard>
+        <template #footer>
+          بمجرد تسجيل الدخول توافق على <NuxtLink to="/" class="text-primary font-medium hover:underline">شروط الخدمة</NuxtLink>.
+        </template>
+      </UAuthForm>
     </UCard>
   </ClientOnly>
 </template>

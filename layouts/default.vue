@@ -5,7 +5,7 @@
   <div>
     <Header />
 
-    <UMain>
+    <UMain class="p-4">
       <slot />
     </UMain>
 

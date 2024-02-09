@@ -1,9 +1,9 @@
 <template>
-        <h3>Blog</h3>
+        <h3>Dashboard</h3>
 </template>
     
 <script setup lang='ts'>
-    
+
 </script>
     
 <style>
